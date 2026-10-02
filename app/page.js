@@ -21,7 +21,6 @@ const matches = [
 	{ home: "deportivo", homeGoals: 8, away: "hull", awayGoals: 5 },
 	{ home: "ipswich", homeGoals: 9, away: "levante", awayGoals: 1, redCard: true },
 	{ home: "ipswich", homeGoals: 6, away: "levante", awayGoals: 5 },
-	{ home: "deportivo", homeGoals: 6, away: "ipswich", awayGoals: 5 },
 ];
 
 const clubById = Object.fromEntries(clubs.map((club) => [club.id, club]));
@@ -163,7 +162,7 @@ function StandingsView({ table }) {
 					<div className="match-list">
 						{[...matches].reverse().map((match, index) => <MatchRow match={match} index={matches.length - 1 - index} key={`${match.home}-${match.away}-${index}`} />)}
 					</div>
-					<div className="results-footer"><span>ALL FIXTURES COMPLETE</span><span>05 / 05</span></div>
+					<div className="results-footer"><span>ALL FIXTURES COMPLETE</span><span>{String(matches.length).padStart(2, "0")} / {String(matches.length).padStart(2, "0")}</span></div>
 				</aside>
 			</section>
 			<footer className="page-footer"><span>PUNPUN LEAGUE</span><span>8 CLUBS <i /> 1 CHAMPION</span></footer>
@@ -212,7 +211,7 @@ function LeagueApp() {
 				</Link>
 				<nav className="main-nav" aria-label="Main navigation">
 					  <Link className={!isResults ? "nav-link active" : "nav-link"} to="/">Standings</Link>
-					  <Link className={isResults ? "nav-link active" : "nav-link"} to="/results">Results <span className="nav-count">05</span></Link>
+					  <Link className={isResults ? "nav-link active" : "nav-link"} to="/results">Results <span className="nav-count">{String(matches.length).padStart(2, "0")}</span></Link>
 				</nav>
 				<button
 					className="theme-toggle"
